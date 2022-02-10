@@ -1,6 +1,7 @@
 import requests
 import pygame
 import sys
+import os
 
 def get_image():
     api_server = "http://static-maps.yandex.ru/1.x/"
@@ -32,4 +33,5 @@ pygame.display.update()
 while 1:
     for i in pygame.event.get():
         if i.type == pygame.QUIT:
+            os.remove('tmp.png')
             sys.exit()
