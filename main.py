@@ -3,27 +3,25 @@ import pygame
 import sys
 import os
 
-def get_image():
-    api_server = "http://static-maps.yandex.ru/1.x/"
 
-    lon = "37.530887"
-    lat = "55.703118"
+api_server = "http://static-maps.yandex.ru/1.x/"
 
-    params = {
-        "ll": ",".join([lon, lat]),
-        "z": 8,
-        "l": "map"
-    }
-    response = requests.get(api_server, params=params)
+lon = "37.530887"
+lat = "55.703118"
 
-    if not response:
-        pass
+params = {
+    "ll": ",".join([lon, lat]),
+    "z": 8,
+    "l": "map"
+}
+response = requests.get(api_server, params=params)
 
-    return response.content
+if not response:
+    pass
 
 
 with open('tmp.png', 'wb') as image_file:
-    image_file.write(get_image())
+    image_file.write(response.content)
 
 sc = pygame.display.set_mode((600, 450))
 maps = pygame.image.load('tmp.png')
@@ -35,3 +33,6 @@ while 1:
         if i.type == pygame.QUIT:
             os.remove('tmp.png')
             sys.exit()
+        if i.type == pygame.KEYDOWN and i.key == pygame.K_PAGEUP:
+            params['z'] += 1
+
