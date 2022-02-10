@@ -9,7 +9,7 @@ def update(lon, lat, z):
 
     params = {
         "ll": ",".join([str(lon), str(lat)]),
-        "z": 8,
+        "z": z,
         "l": "map"
     }
     response = requests.get(api_server, params=params)
@@ -48,4 +48,5 @@ while 1:
 
         if changed:
             update(lon, lat, z)
+            changed = False
 
