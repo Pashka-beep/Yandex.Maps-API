@@ -47,23 +47,20 @@ while 1:
         if i.type == pygame.QUIT:
             os.remove('tmp.png')
             sys.exit()
-        elif i.type == pygame.KEYDOWN and i.key == pygame.K_PAGEUP and z < 17:
-            z += 1
-            changed = True
-        elif i.type == pygame.KEYDOWN and i.key == pygame.K_PAGEDOWN and z > 0:
-            z -= 1
-            changed = True
-        elif i.type == pygame.KEYDOWN and i.key == pygame.K_LEFT:
-            lon -= LON_STEP * math.pow(2, 15 - z)
-            changed = True
-        elif i.type == pygame.KEYDOWN and i.key == pygame.K_RIGHT:
-            lon += LON_STEP * math.pow(2, 15 - z)
-            changed = True
-        elif i.type == pygame.KEYDOWN and i.key == pygame.K_UP:
-            lat -= LAT_STEP * math.pow(2, 15 - z)
-            changed = True
-        elif i.type == pygame.KEYDOWN and i.key == pygame.K_DOWN:
-            lat += LAT_STEP * math.pow(2, 15 - z)
+        elif i.type == pygame.KEYDOWN:
+            if i.key == pygame.K_PAGEUP and z < 17:
+                z += 1
+            elif i.key == pygame.K_PAGEDOWN and z > 0:
+                z -= 1
+            elif i.key == pygame.K_LEFT:
+                lon -= LON_STEP * math.pow(2, 15 - z)
+            elif i.key == pygame.K_RIGHT:
+                lon += LON_STEP * math.pow(2, 15 - z)
+            elif i.key == pygame.K_UP:
+                lat -= LAT_STEP * math.pow(2, 15 - z)
+            elif i.key == pygame.K_DOWN:
+                lat += LAT_STEP * math.pow(2, 15 - z)
+
             changed = True
 
         if changed:
